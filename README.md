@@ -135,7 +135,8 @@ void loop() {
 }
 ```
 # CIRCUIT DIAGRAM:
-![WhatsApp Image 2025-05-25 at 20 59 14_f03c791f](https://github.com/user-attachments/assets/62bc1e46-e95b-4288-b8b1-c509f5c8aa91)
+![WhatsApp Image 2025-05-25 at 21 09 36_e457586a](https://github.com/user-attachments/assets/c357c950-bfa8-4bf6-b8d0-5d57fb2ea120)
+
 
 # OUTPUT:
 ![image](https://github.com/user-attachments/assets/58e47cb9-0d22-4021-991e-19b716ec7f3b)
