@@ -84,8 +84,62 @@ Prototype and build IoT systems without setting up servers or developing web sof
 ![image](https://github.com/user-attachments/assets/5beaf86c-0d5d-4b99-9c22-bb0351f487ab)
 
 # PROGRAM:
+```
+#include <WiFi.h>
+#include <ThingSpeak.h>
+
+// Replace with your credentials
+const char* ssid = "YOUR_WIFI_SSID";
+const char* password = "YOUR_WIFI_PASSWORD";
+const char* apiKey = "YOUR_THINGSPEAK_WRITE_API_KEY";
+const int channelID = YOUR_CHANNEL_ID; // Replace with numeric ID
+
+WiFiClient client;
+const int soilMoisturePin = 35;
+
+void setup() {
+  Serial.begin(115200);
+  WiFi.begin(ssid, password);
+  Serial.print("Connecting to WiFi");
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println("\nWiFi connected!");
+  ThingSpeak.begin(client);
+}
+
+void loop() {
+  int rawValue = analogRead(soilMoisturePin);
+  int moisturePercent = map(rawValue, 4095, 0, 0, 100); // Adjust if needed
+
+  Serial.print("Moisture Raw: ");
+  Serial.print(rawValue);
+  Serial.print(" | Moisture (%): ");
+  Serial.println(moisturePercent);
+
+  ThingSpeak.setField(1, moisturePercent);
+
+  int result = ThingSpeak.writeFields(channelID, apiKey);
+
+  if (result == 200) {
+    Serial.println("Update to ThingSpeak successful.");
+  } else {
+    Serial.print("Failed to update. HTTP error code: ");
+    Serial.println(result);
+  }
+
+  delay(15000); // Wait at least 15s between updates (ThingSpeak limit)
+}
+```
 # CIRCUIT DIAGRAM:
+![WhatsApp Image 2025-05-25 at 20 59 14_f03c791f](https://github.com/user-attachments/assets/62bc1e46-e95b-4288-b8b1-c509f5c8aa91)
+
 # OUTPUT:
+![image](https://github.com/user-attachments/assets/58e47cb9-0d22-4021-991e-19b716ec7f3b)
+
 # RESULT:
 Thus the soil moisture values are updated in the Thing speak cloud using ESP32 controller.
 
