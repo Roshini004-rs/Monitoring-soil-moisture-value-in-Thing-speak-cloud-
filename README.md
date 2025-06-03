@@ -1,6 +1,7 @@
 # Monitoring-soil-moisture-value-in-Thing-speak-cloud
 # Uploading soil moisture sensor data in Thing Speak cloud
-
+# NAME: Roshini S
+# Reg no: 212223230174
 # AIM:
 To monitor the soil moisture value in the Thing speak cloud using soil moisture sensor and ESP32 controller.
 # Apparatus required:
